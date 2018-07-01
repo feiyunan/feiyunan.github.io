@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://feiyunan.cn/"/>
-  <updated>2018-07-01T03:17:28.829Z</updated>
+  <updated>2018-07-01T09:35:23.700Z</updated>
   <id>https://feiyunan.cn/</id>
   
   <author>
@@ -21,16 +21,16 @@
     <link href="https://feiyunan.cn/2018/07/01/echarts-graph/"/>
     <id>https://feiyunan.cn/2018/07/01/echarts-graph/</id>
     <published>2018-07-01T02:29:20.821Z</published>
-    <updated>2018-07-01T03:17:28.829Z</updated>
+    <updated>2018-07-01T09:35:23.700Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>安利插件: <a href="http://echarts.baidu.com/index.html" target="_blank" rel="noopener">echarts v4.0</a>，本次讲解Graph即关系图有关的小技巧。<br>如果有朋友还不知道echarts这款插件，可以先到官网预览下看看效果图，兴许就有兴趣尝试开发图表了呢ヽ(￣▽￣)ﾉ，此时此刻非常感谢百度前端大神的开源项目，工作中真的靠它吃饭呢，嘿嘿~<br>还有其他很不错的图表库此处先不列举了，本文只说工作中遇到的问题和解决方案。</p></blockquote><p>echarts的关系图中有一项功能是开启节点联动效果的功能</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://ww3.sinaimg.cn/large/87c01ec7gy1fsu6ebfxqwj20gk04aq2y.jpg" alt="image" title="focusNodeAdjacency">                </div>                <div class="image-caption">focusNodeAdjacency</div>            </figure><p>由于项目需要，在处理关系图时要求在鼠标滑过连接线时不触发节点联动效果；<br>通过查阅相应API得出解决方案！</p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>效果图如下： <a href="http://gallery.echartsjs.com/editor.html?c=xS1zxDJSzX" target="_blank" rel="noopener">http://gallery.echartsjs.com/editor.html?c=xS1zxDJSzX</a> （可点击链接查看演示代码）</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://ww2.sinaimg.cn/large/87c01ec7gy1fsu6ehuk8xg20jx0gzagd.gif" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>这里最关键的是通过绑定mouseover事件，判断触发的dataType是edge(线)还是node(节点)，如果是edge就取消联动效果，否则开启。</p><p>至于触发节点联动效果的同时连接线变换颜色，可通过对lineStyle添加emphasis属性即可。</p><p>总结来讲，难度不大，只要仔细阅读API，相信小伙伴能找到解决办法。</p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>安利插件: <a href="https://echarts.baidu.com/index.html" target="_blank" rel="noopener">echarts v4.0</a>，本次讲解Graph即关系图有关的小技巧。<br>如果有朋友还不知道echarts这款插件，可以先到官网预览下看看效果图，兴许就有兴趣尝试开发图表了呢ヽ(￣▽￣)ﾉ，此时此刻非常感谢百度前端大神的开源项目，工作中真的靠它吃饭呢，嘿嘿~<br>还有其他很不错的图表库此处先不列举了，本文只说工作中遇到的问题和解决方案。</p></blockquote><p>echarts的关系图中有一项功能是开启节点联动效果的功能</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://ww3.sinaimg.cn/large/87c01ec7gy1fsu6ebfxqwj20gk04aq2y.jpg" alt="image" title="focusNodeAdjacency">                </div>                <div class="image-caption">focusNodeAdjacency</div>            </figure><p>由于项目需要，在处理关系图时要求在鼠标滑过连接线时不触发节点联动效果；<br>通过查阅相应API得出解决方案！</p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>效果图如下： <a href="https://gallery.echartsjs.com/editor.html?c=xS1zxDJSzX" target="_blank" rel="noopener">https://gallery.echartsjs.com/editor.html?c=xS1zxDJSzX</a> （可点击链接查看演示代码）</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://ww2.sinaimg.cn/large/87c01ec7gy1fsu6ehuk8xg20jx0gzagd.gif" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>这里最关键的是通过绑定mouseover事件，判断触发的dataType是edge(线)还是node(节点)，如果是edge就取消联动效果，否则开启。</p><p>至于触发节点联动效果的同时连接线变换颜色，可通过对lineStyle添加emphasis属性即可。</p><p>总结来讲，难度不大，只要仔细阅读API，相信小伙伴能找到解决办法。</p>]]></content>
     
     <summary type="html">
     
       
       
         &lt;blockquote&gt;
-&lt;p&gt;安利插件: &lt;a href=&quot;http://echarts.baidu.com/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;echarts v4.0&lt;/a&gt;，本次讲解Graph即关系图有关的小技巧。&lt;br&gt;
+&lt;p&gt;安利插件: &lt;a href=&quot;https://echarts.baidu.com/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;echarts v4.0&lt;/a&gt;，本次讲解Graph即关系图有关的小技巧。&lt;br
       
     
     </summary>
