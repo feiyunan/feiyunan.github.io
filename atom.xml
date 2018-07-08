@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://feiyunan.cn/"/>
-  <updated>2018-07-01T09:35:23.700Z</updated>
+  <updated>2018-07-08T07:07:50.269Z</updated>
   <id>https://feiyunan.cn/</id>
   
   <author>
@@ -17,13 +17,43 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>跟随鼠标显示放大图片</title>
+    <link href="https://feiyunan.cn/2018/07/08/showBigImg/"/>
+    <id>https://feiyunan.cn/2018/07/08/showBigImg/</id>
+    <published>2018-07-08T05:11:25.872Z</published>
+    <updated>2018-07-08T07:07:50.269Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>此代码经测试，可兼容到 IE7</p></blockquote><h3 id="建立DOM结构"><a href="#建立DOM结构" class="headerlink" title="建立DOM结构"></a>建立DOM结构</h3><p>（注：图片取自网络）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id=&quot;imgList&quot;&gt;</span><br><span class="line">&lt;li&gt;</span><br><span class="line">&lt;img src=&quot;https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1531033577150&amp;di=984afdf87cb92a532d045c26744d74fe&amp;imgtype=0&amp;src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201606%2F13%2F20160613114542_LPd8J.thumb.700_0.jpeg&quot; alt=&quot;&quot;&gt;</span><br><span class="line">&lt;/li&gt;</span><br><span class="line">&lt;li&gt;</span><br><span class="line">&lt;img src=&quot;https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1531033975656&amp;di=71a7d42c53a17ea910ee56117c467a45&amp;imgtype=0&amp;src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F29d6f339e521a547e7d93f5d9710bcbdaeb413d0.jpg&quot; alt=&quot;&quot;&gt;</span><br><span class="line">&lt;/li&gt;</span><br><span class="line">&lt;li&gt;</span><br><span class="line">&lt;img src=&quot;https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1531034035536&amp;di=a2558a9bc21810f247fec73bb2cbeda6&amp;imgtype=jpg&amp;src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D1155359958%2C3217731341%26fm%3D214%26gp%3D0.jpg&quot; alt=&quot;&quot;&gt;</span><br><span class="line">&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure></p><h3 id="添加CSS"><a href="#添加CSS" class="headerlink" title="添加CSS"></a>添加CSS</h3><p>这里对 #bigImage 设置为 position:fixed; 很重要</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ul li&#123;</span><br><span class="line">    list-style:none;</span><br><span class="line">&#125;</span><br><span class="line">ul li&gt;img &#123;</span><br><span class="line">    width: 150px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#bigImage &#123;</span><br><span class="line">    position: fixed;  </span><br><span class="line">    z-index: 100;</span><br><span class="line">    display: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#bigImage img &#123;</span><br><span class="line">    width: 300px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="添加JS"><a href="#添加JS" class="headerlink" title="添加JS"></a>添加JS</h3><p>由于大图片定位是fixed（相对于浏览器窗口进行定位），所以鼠标位移也通过这种定位方式获取，即clientX &amp; clientY；<br>获取鼠标为以后，增加一定偏移量就可以正常显示大图片了！</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#imgList li&gt;img&quot;).hover(function() &#123;</span><br><span class="line">        var _this = $(this);</span><br><span class="line">        var _src = _this.attr(&quot;src&quot;);</span><br><span class="line">        _this.parent().append(&quot;&lt;div id=&apos;bigImage&apos;&gt;&lt;img src=&quot; + _src + &quot;&gt;&lt;/div&gt;&quot;);</span><br><span class="line"></span><br><span class="line">        _this.mousemove(function(e) &#123;</span><br><span class="line">            var eX = e.clientX;</span><br><span class="line">            var eY = e.clientY;</span><br><span class="line"></span><br><span class="line">            $(&quot;#bigImage&quot;).css(&#123;</span><br><span class="line">                &quot;top&quot;: (eY - 100) + &quot;px&quot;,</span><br><span class="line">                &quot;left&quot;: (eX + 80) + &quot;px&quot;</span><br><span class="line">            &#125;).fadeIn(&quot;fast&quot;);</span><br><span class="line"></span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;, function() &#123;</span><br><span class="line">        $(&quot;#bigImage&quot;).remove();</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure><h3 id="在线演示"><a href="#在线演示" class="headerlink" title="在线演示"></a>在线演示</h3><p><a href="https://jsfiddle.net/Whisperd/3zkym0ud/" target="_blank" rel="noopener">https://jsfiddle.net/Whisperd/3zkym0ud/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;此代码经测试，可兼容到 IE7&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;建立DOM结构&quot;&gt;&lt;a href=&quot;#建立DOM结构&quot; class=&quot;headerlink&quot; title=&quot;建立DOM结构&quot;&gt;&lt;/a&gt;建立DOM结构&lt;/h3&gt;&lt;p&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="hover" scheme="https://feiyunan.cn/tags/hover/"/>
+    
+      <category term="mousemove" scheme="https://feiyunan.cn/tags/mousemove/"/>
+    
+      <category term="IE" scheme="https://feiyunan.cn/tags/IE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>echarts-graph取消节点之间线的联动效果</title>
     <link href="https://feiyunan.cn/2018/07/01/echarts-graph/"/>
     <id>https://feiyunan.cn/2018/07/01/echarts-graph/</id>
     <published>2018-07-01T02:29:20.821Z</published>
-    <updated>2018-07-01T09:35:23.700Z</updated>
+    <updated>2018-07-08T02:36:59.664Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>安利插件: <a href="https://echarts.baidu.com/index.html" target="_blank" rel="noopener">echarts v4.0</a>，本次讲解Graph即关系图有关的小技巧。<br>如果有朋友还不知道echarts这款插件，可以先到官网预览下看看效果图，兴许就有兴趣尝试开发图表了呢ヽ(￣▽￣)ﾉ，此时此刻非常感谢百度前端大神的开源项目，工作中真的靠它吃饭呢，嘿嘿~<br>还有其他很不错的图表库此处先不列举了，本文只说工作中遇到的问题和解决方案。</p></blockquote><p>echarts的关系图中有一项功能是开启节点联动效果的功能</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://ww3.sinaimg.cn/large/87c01ec7gy1fsu6ebfxqwj20gk04aq2y.jpg" alt="image" title="focusNodeAdjacency">                </div>                <div class="image-caption">focusNodeAdjacency</div>            </figure><p>由于项目需要，在处理关系图时要求在鼠标滑过连接线时不触发节点联动效果；<br>通过查阅相应API得出解决方案！</p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>效果图如下： <a href="https://gallery.echartsjs.com/editor.html?c=xS1zxDJSzX" target="_blank" rel="noopener">https://gallery.echartsjs.com/editor.html?c=xS1zxDJSzX</a> （可点击链接查看演示代码）</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://ww2.sinaimg.cn/large/87c01ec7gy1fsu6ehuk8xg20jx0gzagd.gif" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>这里最关键的是通过绑定mouseover事件，判断触发的dataType是edge(线)还是node(节点)，如果是edge就取消联动效果，否则开启。</p><p>至于触发节点联动效果的同时连接线变换颜色，可通过对lineStyle添加emphasis属性即可。</p><p>总结来讲，难度不大，只要仔细阅读API，相信小伙伴能找到解决办法。</p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>安利插件: <a href="https://echarts.baidu.com/index.html" target="_blank" rel="noopener">echarts v4.0</a>，本次讲解Graph即关系图有关的小技巧。<br>如果有朋友还不知道echarts这款插件，可以先到官网预览下看看效果图，兴许就有兴趣尝试开发图表了呢ヽ(￣▽￣)ﾉ，此时此刻非常感谢百度前端大神的开源项目，工作中真的靠它吃饭呢，嘿嘿~<br>还有其他很不错的图表库此处先不列举了，本文只说工作中遇到的问题和解决方案。</p></blockquote><p>echarts的关系图中有一项功能是开启节点联动效果的功能</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://pbj0gsdh7.bkt.clouddn.com/focusNodeAdjacency.jpg" alt="image" title="focusNodeAdjacency">                </div>                <div class="image-caption">focusNodeAdjacency</div>            </figure><p>由于项目需要，在处理关系图时要求在鼠标滑过连接线时不触发节点联动效果；<br>通过查阅相应API得出解决方案！</p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>效果图如下： <a href="https://gallery.echartsjs.com/editor.html?c=xS1zxDJSzX" target="_blank" rel="noopener">https://gallery.echartsjs.com/editor.html?c=xS1zxDJSzX</a> （可点击链接查看演示代码）</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://pbj0gsdh7.bkt.clouddn.com/graph-line.gif" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>这里最关键的是通过绑定mouseover事件，判断触发的dataType是edge(线)还是node(节点)，如果是edge就取消联动效果，否则开启。</p><p>至于触发节点联动效果的同时连接线变换颜色，可通过对lineStyle添加emphasis属性即可。</p><p>总结来讲，难度不大，只要仔细阅读API，相信小伙伴能找到解决办法。</p>]]></content>
     
     <summary type="html">
     
